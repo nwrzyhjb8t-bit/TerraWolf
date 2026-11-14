@@ -1,11 +1,10 @@
 <!doctype html>
-<html lang="en" dir="ltr">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>TerraWolf</title>
+<meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;700;800&family=JetBrains+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@300;400;500;700&display=swap">
 <style>
+/* Concept: a private listening room. Obsidian ground, cobalt light, one champagne-gold hairline accent. Cover Flow shelf, audio-reactive ring, glass dock, detail sheet that opens out of the chosen cover. Single dark look by design. */
 :root{
   --bg:#0A0A0C; --ink:#EEF2FA; --mute:#8B95AD; --cobalt:#3B82F6; --ice:#B4D0FF; --gold:#D8C48E; --line:rgba(120,160,255,.28); --glass:rgba(14,20,40,.62);
   --font:"Inter Tight",system-ui,sans-serif; --mono:"JetBrains Mono",ui-monospace,Menlo,monospace; --num:"JetBrains Mono",ui-monospace,Menlo,monospace; --ease:cubic-bezier(.22,1,.36,1); --txtdir:ltr;
@@ -21,7 +20,7 @@ body{margin:0;background:radial-gradient(1100px 650px at 50% 36%,#13224f 0%,#0b0
 body::after{content:"";position:fixed;inset:0;z-index:40;pointer-events:none;mix-blend-mode:overlay;opacity:.4;
   background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
 #bg{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
-.app{position:relative;z-index:1;height:100%;display:grid;grid-template-rows:auto auto minmax(0,1fr) auto;gap:8px;max-width:1500px;margin:0 auto}
+.app{position:relative;z-index:1;height:100%;display:grid;grid-template-rows:auto auto auto minmax(0,1fr) auto;gap:8px;max-width:1500px;margin:0 auto}
 header{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
 .brand{display:flex;align-items:center;gap:14px;cursor:pointer;background:none;border:0;color:inherit;padding:0;text-align:start;font:inherit}
 .brand svg{width:46px;height:46px;flex:none;filter:drop-shadow(0 0 12px rgba(59,130,246,.55))}
@@ -57,7 +56,7 @@ html[dir=rtl] .brand .t{animation-name:wipeR}
   -webkit-mask-image:radial-gradient(ellipse at 50% 100%,#000 0%,transparent 68%);mask-image:radial-gradient(ellipse at 50% 100%,#000 0%,transparent 68%);animation:gm 2.4s linear infinite;animation-play-state:paused}
 body.live .grid{animation-play-state:running}
 @keyframes gm{to{background-position:0 56px,0 56px}}
-.card{--cw:min(330px,calc((100vh - 330px) / 1.12),58vw);--lv:0;position:absolute;left:calc(var(--cw) / -2);top:calc(var(--cw) * -.62);width:var(--cw);
+.card{--cw:min(380px,calc((100vh - 400px) / .95),58vw);--lv:0;position:absolute;left:calc(var(--cw) / -2);top:calc(var(--cw) * -.62);width:var(--cw);
   transform:translate3d(0,0,-260px) scale(.7);transition:transform 1.05s var(--ease) calc(var(--d,0) * 38ms);will-change:transform;outline:none;cursor:pointer;
   -webkit-box-reflect:below 4px linear-gradient(transparent 62%,rgba(255,255,255,.15))}
 .shelf.fan .card{transform:translate3d(var(--x),0,var(--z)) rotateY(var(--ry))}
@@ -68,7 +67,7 @@ body.live .grid{animation-play-state:running}
 .card.on .tilt{border-color:rgba(216,196,142,.8);box-shadow:0 0 0 1px rgba(216,196,142,.25),0 0 calc(34px + var(--lv) * 70px) rgba(59,130,246,calc(.28 + var(--lv) * .5))}
 .card:focus-visible .tilt{outline:2px solid var(--ice);outline-offset:3px}
 .cv{position:relative;overflow:hidden;border-radius:4px;background:#000}
-.cv canvas{display:block;width:100%;aspect-ratio:4/3;object-fit:cover}
+.cv canvas{display:block;width:100%;aspect-ratio:16/9;object-fit:cover}
 .scan{position:absolute;top:0;bottom:0;width:2px;left:0;background:var(--ice);box-shadow:0 0 16px 4px rgba(59,130,246,.95);display:none}
 .card.on.playing .scan{display:block}
 .glare{position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at var(--gx,50%) var(--gy,30%),rgba(255,255,255,.2),transparent 55%);mix-blend-mode:soft-light}
@@ -102,6 +101,7 @@ h2{margin:2px 0 0;font-size:clamp(17px,2.2vw,22px);letter-spacing:-.015em;line-h
 .btn.primary.live{background:#0b1a38;color:var(--ice);border-color:var(--cobalt)}
 .toast{position:fixed;left:50%;bottom:92px;transform:translateX(-50%);z-index:50;background:rgba(10,14,30,.92);border:1px solid var(--gold);color:var(--ink);padding:9px 16px;border-radius:999px;font:500 12px var(--font);clip-path:inset(0 0 100% 0);transition:clip-path .5s var(--ease);pointer-events:none}
 .toast.on{clip-path:inset(0 0 0 0)}
+/* detail sheet */
 .sheet{position:fixed;inset:0;z-index:30;background:radial-gradient(900px 600px at 30% 30%,#14255a 0%,#0a0d1b 55%,var(--bg) 100%),var(--bg);overflow:auto;
   clip-path:inset(var(--t,0px) var(--r,0px) var(--b,0px) var(--l,0px) round 8px);transition:clip-path .95s cubic-bezier(.7,0,.15,1)}
 .sheet.open{clip-path:inset(0 0 0 0 round 0)}
@@ -112,7 +112,7 @@ h2{margin:2px 0 0;font-size:clamp(17px,2.2vw,22px);letter-spacing:-.015em;line-h
 .in .rv{clip-path:inset(0 0 -20% 0);transition-delay:calc(.45s + var(--i) * 70ms)}
 .frame{position:relative;border:1px solid rgba(216,196,142,.7);border-radius:8px;padding:8px;background:#05070f;box-shadow:0 0 80px rgba(59,130,246,.28)}
 .frame .wrap{position:relative;overflow:hidden;border-radius:4px}
-.frame canvas{display:block;width:100%;aspect-ratio:4/3;background:#000}
+.frame canvas{display:block;width:100%;aspect-ratio:16/9;background:#000}
 .scan2{position:absolute;top:0;bottom:0;width:2px;left:0;background:var(--ice);box-shadow:0 0 18px 5px rgba(59,130,246,.95);display:none}
 body.live .scan2{display:block}
 .badge{position:absolute;left:14px;top:14px;font:500 10px var(--mono);letter-spacing:.12em;text-transform:uppercase;background:rgba(5,8,18,.82);border:1px solid var(--gold);padding:4px 8px;border-radius:3px;color:var(--gold)}
@@ -132,27 +132,68 @@ body.live .scan2{display:block}
 .band span{font-variant-numeric:tabular-nums;color:var(--ink)}
 .sheet .acts{margin-top:18px}
 .pnote{margin:14px 0 0;color:var(--mute);font-size:12px;line-height:1.6;max-width:62ch}
+.lead{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:10px}
+.live,.upload{display:flex;align-items:center;gap:12px;border-radius:10px;padding:8px 14px;min-width:0}
+.live b,.upload b{display:block;font:700 13px var(--font)}
+.live span,.upload span{display:block;font-size:12px;line-height:1.45}
+.live{border:1px solid var(--line);background:var(--glass);backdrop-filter:blur(8px)}
+.live span{color:#B9C3DA}
+.live .dot{width:10px;height:10px;border-radius:50%;background:#5bf0a8;flex:none;animation:pulse 2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(91,240,168,.55)}70%{box-shadow:0 0 0 10px rgba(91,240,168,0)}100%{box-shadow:0 0 0 0 rgba(91,240,168,0)}}
+.upload{border:1.5px dashed var(--gold);background:rgba(216,196,142,.08);cursor:pointer;color:var(--ink);transition:background .2s,box-shadow .2s}
+.upload:hover,.upload:focus-visible{background:rgba(216,196,142,.18);box-shadow:0 0 22px rgba(216,196,142,.25);outline:none}
+.upload svg{width:28px;height:28px;color:var(--gold);flex:none}
+.upload span{color:#E2D8B6}
+#intro{position:fixed;inset:0;z-index:60;background:#000;display:grid;place-items:center;overflow:hidden;clip-path:circle(150% at 50% 50%)}
+#intro.out{clip-path:circle(0% at 50% 50%);transition:clip-path 1.15s cubic-bezier(.7,0,.2,1)}
+#icv{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:blur(1px) saturate(1.15)}
+#intro .vig{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(0,0,0,.1),rgba(0,0,0,.84) 78%)}
+.ic{position:relative;text-align:center;padding:0 24px;max-width:780px;display:grid;gap:16px;justify-items:center}
+.imark{width:72px;height:72px;filter:drop-shadow(0 0 22px rgba(216,196,142,.55));clip-path:inset(100% 0 0 0);animation:rise 1.1s var(--ease) .8s both}
+.iwm{font-weight:300;font-size:clamp(30px,6vw,58px);letter-spacing:.24em;line-height:1;direction:ltr;clip-path:inset(0 100% 0 0);animation:wipe 1.2s var(--ease) 1.1s both}
+.iwm b{font-weight:800;background:linear-gradient(180deg,#fff,#9fc0ff 70%,#5b8de0);-webkit-background-clip:text;background-clip:text;color:transparent}
+.il{margin:0;font-size:clamp(16px,2.4vw,22px);color:#DCE4F5;line-height:1.5;clip-path:inset(0 0 100% 0)}
+.l2{animation:rise 1s var(--ease) 2.3s both}
+.l3{color:var(--gold);animation:rise 1s var(--ease) 3.6s both}
+.ibar{position:absolute;left:0;right:0;bottom:max(18px,env(safe-area-inset-bottom,0px));display:flex;gap:12px;justify-content:center;align-items:center;flex-wrap:wrap}
+html[lang=ar] .wm,html[lang=ar] .wm b,html[lang=ar] .iwm,html[lang=ar] .iwm b{letter-spacing:.2em!important}
+#drop{position:fixed;inset:12px;z-index:55;border:2px dashed var(--gold);border-radius:14px;display:none;place-items:center;background:rgba(6,10,24,.86);font:700 22px var(--font);color:var(--gold);pointer-events:none}
+body.drag #drop{display:grid}
+html,body{overflow-x:hidden}
+.app{overflow-x:clip}
+body:not(.ready) .tilt,body:not(.ready) .brand .t{animation-play-state:paused}
 @media(max-width:860px){
   body{overflow-y:auto}
-  .app{height:auto;min-height:100%;grid-template-rows:auto auto 58vh auto}
+  .app{height:auto;min-height:100%;grid-template-rows:auto auto auto 58vh auto}
+  .lead{grid-template-columns:1fr}
   .dock{grid-template-columns:1fr}
   .card{--cw:min(250px,64vw)}
   .sgrid{grid-template-columns:1fr}
   .how .lg{margin-inline-start:0;width:100%}
 }
 @media(max-height:640px) and (min-width:861px){.how{display:none}}
-@media(prefers-reduced-motion:reduce){.card,.tilt,.brand .t,.sheet,.rv,.grid,.toast{animation:none!important;transition:none!important}.tilt{clip-path:none}.rv{clip-path:none}}
-[hidden]{display:none!important}
+@media(prefers-reduced-motion:reduce){.card,.tilt,.brand .t,.sheet,.rv,.grid,.toast,.live .dot{animation:none!important;transition:none!important}.tilt{clip-path:none}.rv{clip-path:none}}
 </style>
-</head>
-<body>
+<style>[hidden]{display:none!important}</style></head><body>
+
 <canvas id="bg"></canvas>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="wg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d8c48e"/><stop offset="1" stop-color="#7d6a3a"/></linearGradient><symbol id="wolf" viewBox="0 0 48 48"><path d="M6 4 L18 13 L24 12 L30 13 L42 4 L43 23 L36 38 L24 46 L12 38 L5 23 Z" fill="#0d1226" stroke="url(#wg)" stroke-width="1.6" stroke-linejoin="round"/>
+        <path d="M12 22 L20 25 L21 28 L14 27 Z M36 22 L28 25 L27 28 L34 27 Z" fill="#8fb7ff"/><path d="M20 36 L24 31 L28 36 L24 40 Z" fill="url(#wg)"/><path d="M24 13 L24 28" stroke="#3b82f6" stroke-width="1" opacity=".7"/></symbol></defs></svg>
+<div id="intro" role="dialog" aria-label="TerraWolf">
+  <canvas id="icv"></canvas><div class="vig"></div>
+  <div class="ic">
+    <svg class="imark" viewBox="0 0 48 48" aria-hidden="true"><use href="#wolf"/></svg>
+    <div class="iwm">TERRA<b>WOLF</b></div>
+    <p class="il l2" data-i18n="intro2"></p>
+    <p class="il l3" data-i18n="intro3"></p>
+  </div>
+  <div class="ibar"><div class="seg" role="group" aria-label="Language"><button type="button" data-l="ar" aria-pressed="false">&#1593;&#1585;&#1576;&#1610;</button><button type="button" data-l="en" aria-pressed="true">English</button></div><button id="skip" class="btn" type="button" data-i18n="skip"></button></div>
+</div>
+<div id="drop" aria-hidden="true"><span data-i18n="drop"></span></div>
 <div class="app">
   <header>
     <button class="brand" id="brand" type="button" aria-label="TerraWolf">
-      <svg viewBox="0 0 48 48" aria-hidden="true"><defs><linearGradient id="wg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d8c48e"/><stop offset="1" stop-color="#7d6a3a"/></linearGradient></defs>
-        <path d="M6 4 L18 13 L24 12 L30 13 L42 4 L43 23 L36 38 L24 46 L12 38 L5 23 Z" fill="#0d1226" stroke="url(#wg)" stroke-width="1.6" stroke-linejoin="round"/>
-        <path d="M12 22 L20 25 L21 28 L14 27 Z M36 22 L28 25 L27 28 L34 27 Z" fill="#8fb7ff"/><path d="M20 36 L24 31 L28 36 L24 40 Z" fill="url(#wg)"/><path d="M24 13 L24 28" stroke="#3b82f6" stroke-width="1" opacity=".7"/></svg>
+      <svg viewBox="0 0 48 48" aria-hidden="true"><use href="#wolf"/></svg>
       <span class="t"><span class="wm">TERRA<b>WOLF</b></span><div class="tag" data-i18n="sub"></div></span>
     </button>
     <div class="ctl">
@@ -162,6 +203,10 @@ body.live .scan2{display:block}
     </div>
   </header>
   <div class="how"><span class="s"><i>1</i><span data-i18n="how1"></span></span><span class="s"><i>2</i><span data-i18n="how2"></span></span><span class="s"><i>3</i><span data-i18n="how3"></span></span><span class="lg" data-i18n="legend"></span></div>
+    <div class="lead">
+    <div class="live"><span class="dot"></span><div><b data-i18n="liveT"></b><span data-i18n="liveB"></span></div></div>
+    <label class="upload" for="file" tabindex="0" role="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4"/><path d="m7 9 5-5 5 5"/><path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg><div><b data-i18n="upT"></b><span data-i18n="upB"></span></div></label>
+  </div>
   <section class="stage" id="stage"><div class="grid"></div><div class="shelf" id="shelf"></div></section>
   <footer class="dock">
     <div><p class="dk" data-t="idx"></p><h2 data-t="name"></h2><p class="sub" data-t="sub"></p></div>
@@ -175,7 +220,7 @@ body.live .scan2{display:block}
     <button class="btn close" id="sClose" type="button" data-i18n="close"></button>
     <div class="sgrid">
       <div class="rv" style="--i:0">
-        <div class="frame"><div class="wrap"><canvas id="dc" width="640" height="480"></canvas><div class="scan2" id="scan2"></div></div><span class="badge" id="badge"></span></div>
+        <div class="frame"><div class="wrap"><canvas id="dc" width="640" height="360"></canvas><div class="scan2" id="scan2"></div></div><span class="badge" id="badge"></span></div>
         <canvas id="scope" width="900" height="120"></canvas>
       </div>
       <div>
@@ -194,8 +239,9 @@ body.live .scan2{display:block}
     </div>
   </div>
 </div>
+
 <script>
-const W=320,H=240,FRAMES={};
+const W=320,H=180,FRAMES={};
 function hash(x,y){let h=Math.imul(x|0,374761393)+Math.imul(y|0,668265263);h=Math.imul(h^(h>>>13),1274126177);return((h^(h>>>16))>>>0)/4294967295}
 function vn(x,y){const xi=Math.floor(x),yi=Math.floor(y),xf=x-xi,yf=y-yi,u=xf*xf*(3-2*xf),v=yf*yf*(3-2*yf);
   const a=hash(xi,yi),b=hash(xi+1,yi),c=hash(xi,yi+1),d=hash(xi+1,yi+1);return a+(b-a)*u+(c-a)*v+(a-b-c+d)*u*v}
@@ -206,62 +252,87 @@ function ramp(t,s){t=clamp(t)*(s.length-1);const i=Math.min(s.length-2,Math.floo
 const land=(u,v)=>fbm(u*3.2+3,v*2.6+1)>.55;
 const mix=(a,b,f)=>[a[0]+(b[0]-a[0])*f,a[1]+(b[1]-a[1])*f,a[2]+(b[2]-a[2])*f];
 const add=(a,b,f)=>[a[0]+b[0]*f,a[1]+b[1]*f,a[2]+b[2]*f];
+/* Each module: px(u,v,t,x,y) returns [r,g,b]; optional post(ctx,t) draws strokes on top. */
 const MODS=[
-{id:'nightlights',svs:5313,
+{id:'nightlights',name:'Luminous Cities',year:2023,sub:'Urban Expansion & Light Rhythm',svs:5313,
+ desc:'Night-time lights from 2012 to 2023 trace how cities grow and brighten. Dark ocean and bright settlements give a clean intensity to rhythm signal.',
+ map:'Bright clusters trigger percussion; light intensity sets volume and pitch.',
  snd:{wave:'sine',root:98,scale:[0,2,4,7,9],perc:.1,gain:.2},
  px(u,v,t,x,y){const L=land(u,v);let c=[5,7,15];if(!L)return c;const cityN=fbm(u*13,v*9+7);const k=sm(.5,.72,cityN);
   const tw=.75+.25*Math.sin(t*2.2+hash(x>>1,y>>1)*6.28);const dot=hash(x>>1,y>>1)>.4?1:.45;
   c=add(c,[255,205,110],k*tw*dot);return add(c,[255,160,60],sm(.5,.65,cityN)*.12)}},
-{id:'seasurface',svs:3912,hash:'#media_group_349716',
+{id:'seasurface',name:'Thermal Currents',year:2022,sub:'Global Ocean Thermal Gradients',svs:3912,hash:'#media_group_349716',
+ desc:'Ocean currents move heat around the planet. Slow flowing gradients translate into evolving, layered soundscapes.',
+ map:'Warm hues rise in pitch, cold hues fall; flow speed shapes the swell.',
  snd:{wave:'triangle',root:82.4,scale:[0,3,5,7,10],perc:0,gain:.2},
  px(u,v,t){if(land(u,v))return[14,16,22];const n=fbm(u*3+t*.05,v*3-t*.03);const T=1-Math.abs(v-.5)*1.7+(n-.5)*.8;
   return ramp(T,[[10,20,90],[20,110,200],[60,200,170],[250,220,90],[240,70,40]])}},
-{id:'lightning',svs:5011,
+{id:'lightning',name:'Orbital Flashes',year:2023,sub:'ISS High-Contrast Lightning Events',svs:5011,
+ desc:'Lightning detected from the International Space Station between 2017 and 2023. Sudden bright flashes suit staccato, trigger-based sound.',
+ map:'Each flash fires a noise burst; brightness sets the filter frequency.',
  snd:{wave:'square',root:130.8,scale:[0,2,3,7,8],perc:.06,gain:.1},
  px(u,v,t){const n=fbm(u*4+t*.03,v*4);return[6+n*10,10+n*16,22+n*34]},
  post(c,t){for(let k=0;k<7;k++){const ph=(t*.55+k*.37)%1;if(ph>.16)continue;const f=1-ph/.16,cx=hash(k,3)*W,cy=hash(k,9)*H;
   const g=c.createRadialGradient(cx,cy,0,cx,cy,44);g.addColorStop(0,`rgba(235,245,255,${f})`);g.addColorStop(.35,`rgba(120,170,255,${f*.5})`);g.addColorStop(1,'rgba(40,80,200,0)');
   c.fillStyle=g;c.fillRect(cx-40,cy-40,80,80);c.strokeStyle=`rgba(255,255,255,${f})`;c.lineWidth=1.4;c.beginPath();let x=cx,y=cy-30;c.moveTo(x,y);
   for(let s=0;s<7;s++){x+=(hash(k,s+20)-.5)*14;y+=9;c.lineTo(x,y)}c.stroke()}}},
-{id:'co2',svs:5196,
+{id:'co2',name:'Carbon Atmosphere',year:2022,sub:'DYAMOND Global CO2 Plumes',svs:5196,
+ desc:'A high-resolution model of carbon dioxide drifting through the atmosphere. Dense plumes become heavy, low harmonics.',
+ map:'Plume density sets amplitude; hotter colours climb the scale.',
  snd:{wave:'sawtooth',root:65.4,scale:[0,1,5,7,8],perc:0,gain:.09},
  px(u,v,t){const n=fbm(u*5+t*.08,v*3.5+fbm(u*2,v*2)*.8);const k=sm(.38,.8,n);return ramp(k,[[8,6,24],[90,20,120],[220,60,90],[255,170,60]])}},
-{id:'aerosols',svs:5669,
+{id:'aerosols',name:'Particulate Dust',year:2024,sub:'GEOS Aerosols & Toxic Dust Plumes',svs:5669,
+ desc:'Smoke, dust and sea salt tracked as separate layers. Each aerosol type can own its own voice.',
+ map:'Dust, smoke and sea salt each shift the hue; hue picks the scale degree.',
  snd:{wave:'sawtooth',root:110,scale:[0,2,3,5,7,10],perc:0,gain:.08},
  px(u,v,t){const w=fbm(u*3,v*3+t*.04)*1.6;const n=fbm(u*4+w,v*4+w*.5);let c=[8,12,24];
   c=add(c,[230,140,50],sm(.52,.8,n)*.95);c=add(c,[190,190,195],sm(.6,.85,fbm(u*6+9,v*6-t*.05))*.8);c=add(c,[60,120,220],sm(.5,.2,n)*.55);return c}},
-{id:'airquality',svs:5533,
+{id:'airquality',name:'Air Quality Mesh',year:2024,sub:'Atmospheric Pollutant Zoning',svs:5533,
+ desc:'Model frames split the air into zones of pollutant concentration. Each cell of the mesh reads as one pixel of sound.',
+ map:'Cell colour from clean green to hazardous purple sets pitch and volume.',
  snd:{wave:'triangle',root:123.5,scale:[0,2,4,6,9],perc:.12,gain:.15},
  px(u,v,t,x,y){const nx=Math.floor(x/8),ny=Math.floor(y/8);const val=fbm(nx*.2+t*.05,ny*.2);let c=ramp(val*1.2-.05,[[40,170,90],[220,200,60],[240,120,40],[200,30,60],[120,10,100]]);
   if(x%8===0||y%8===0)c=[c[0]*.35,c[1]*.35,c[2]*.35];return c}},
-{id:'ocean2',svs:5425,
+{id:'ocean2',name:'Perpetual Ocean',year:2023,sub:'Deep Circular Oceanic Loops',svs:5425,
+ desc:'Western boundary currents curl into great loops. The repeating rings suit circular, rhythmic motifs.',
+ map:'Bright current filaments set pitch; ring spacing drives the rhythm.',
  snd:{wave:'sine',root:110,scale:[0,2,5,7,9],perc:.09,gain:.2},
  px(u,v,t){let a=0;for(const g of[[.3,.5],[.72,.42]]){const dx=(u-g[0])*1.6,dy=v-g[1],d=Math.hypot(dx,dy),an=Math.atan2(dy,dx);
   a=Math.max(a,(.5+.5*Math.sin(d*55-t*1.5+an*2+fbm(u*6,v*6)*3))*Math.exp(-d*3.2))}
   return ramp(a*1.25,[[3,6,18],[8,40,110],[20,140,200],[210,245,255]])}},
-{id:'atmriver',svs:4960,
+{id:'atmriver',name:'Atmospheric Rivers',year:2022,sub:'3D Moisture Transport Mapping',svs:4960,
+ desc:'Narrow corridors carry vast amounts of water vapour across oceans. The diagonal band becomes a travelling melodic line.',
+ map:'Moisture density sets volume; the band position moves the pitch.',
  snd:{wave:'triangle',root:146.8,scale:[0,2,4,7,11],perc:0,gain:.17},
  px(u,v,t){const y0=.25+.45*u+(fbm(u*3,v*2+t*.05)-.5)*.3,d=v-y0;const m=Math.exp(-d*d*55)*(.45+.8*fbm(u*8-t*.12,v*8));
   return ramp(m,[[8,14,30],[30,80,160],[110,200,240],[255,255,255]])}},
-{id:'gedi',svs:4950,
+{id:'gedi',name:'Canopy Height',year:2022,sub:'GEDI Forest Height & Biosphere',svs:4950,
+ desc:'Laser measurements from orbit map how tall forests grow. Height colours drive pitch, and dense stands add depth.',
+ map:'Taller canopy means higher pitch; sparse land stays quiet.',
  snd:{wave:'triangle',root:98,scale:[0,2,4,7,9],perc:0,gain:.18},
  px(u,v,t){if(!land(u,v))return[6,12,26];const h=fbm(u*7,v*5)*(1-Math.abs(v-.5)*.9)+.1;return ramp(h*1.3,[[10,25,14],[30,100,40],[110,180,60],[230,230,120]])}},
-{id:'temperature',svs:null,
+{id:'temperature',name:'Surface Thermal Anomalies',year:2024,sub:'Climate Tension Soundscapes',svs:null,
+ desc:'Temperature departures from the long-term average. Warm anomalies raise tension, cold ones relax it.',
+ map:'Red anomalies raise pitch and add dissonance; blue ones fall and soften.',
  snd:{wave:'sawtooth',root:87.3,scale:[0,1,3,6,7],perc:0,gain:.08},
  px(u,v,t){const a=(fbm(u*3+t*.04,v*3)-.5)*2+(land(u,v)?.12:-.05);return ramp(.5+a*.85,[[40,90,200],[220,225,235],[235,70,40]])}},
-{id:'cryosphere',svs:null,
+{id:'cryosphere',name:'Glacial Balance',year:2024,sub:'Polar Ice Mass Loss & Crystal Chimes',svs:null,
+ desc:'Polar ice is retreating. Bright cracked ice rings like glass, and open water falls silent.',
+ map:'Bright ice triggers crystal chimes; dark water mutes the voices.',
  snd:{wave:'sine',root:261.6,scale:[0,2,4,7,9],perc:.14,gain:.15},
  px(u,v,t){const dx=(u-.5)*1.6,dy=v-.5,d=Math.hypot(dx,dy);const edge=.36+(fbm(u*6,v*6+t*.03)-.5)*.28;
   if(d<edge){const crack=Math.abs(fbm(u*13,v*13)-.5)<.025;const n=fbm(u*5,v*5);return crack?[20,70,110]:ramp(.55+n*.5,[[150,190,225],[225,240,255],[255,255,255]])}
   return add([4,14,36],[190,225,250],sm(.58,.7,fbm(u*10,v*10))*.5*sm(edge+.2,edge,d))}},
-{id:'biosphere',svs:null,
+{id:'biosphere',name:'Vegetation Pulse',year:2024,sub:'Biosphere NDVI Health Index',svs:null,
+ desc:'The Normalized Difference Vegetation Index shows where plants are thriving. Green means health, brown means stress.',
+ map:'Greener land plays brighter, fuller chords; dry land thins out.',
  snd:{wave:'triangle',root:110,scale:[0,2,4,5,7,9,11],perc:0,gain:.17},
  px(u,v,t){if(!land(u,v))return[5,10,22];const n=fbm(u*5,v*4)+(1-Math.abs(v-.5)*2)*.3+Math.sin(t*.5)*.04;return ramp(n*.95-.1,[[90,60,30],[170,150,60],[80,170,50],[20,120,50]])}}
 ];
 function paint(m,cv,t){const c=cv.getContext('2d',{willReadFrequently:true}),im=c.createImageData(W,H),d=im.data;
   for(let y=0;y<H;y++)for(let x=0;x<W;x++){const p=m.px(x/W,y/H,t,x,y),i=(y*W+x)*4;d[i]=p[0];d[i+1]=p[1];d[i+2]=p[2];d[i+3]=255}
   c.putImageData(im,0,0);if(m.post)m.post(c,t)}
-
+/* Text for the 12 modules, English and Arabic. Official titles come from the NASA SVS pages in the brief. */
 const TXT={
 nightlights:{per:'2012–2023',official:'Change in Night Lights between 2012 and 2023 - EIC Version',
  en:{name:'Luminous Cities',sub:'Urban expansion and light rhythm',desc:'Tracks how urban lighting around the world changed between 2012 and 2023. The strong contrast between dark terrain and bright lights makes intensity easy to turn into rhythm.',map:'Bright clusters trigger percussion. Light intensity sets volume and pitch.'},
@@ -304,14 +375,13 @@ const UI={
 en:{tagline:'Earth Jukebox',sub:'NASA Earth Information Center · Sonification Engine',how1:'Choose a dataset',how2:'Press Play Audio',how3:'Open details to learn more',legend:'Brighter pixel = louder · Colour = note',
  freq:'Frequency',note:'Note',bright:'Brightness',hue:'Hue',play:'Play Audio',stop:'Stop Audio',sonify:'Sonify Dataset',open:'Open details',close:'Close',mapping:'How this dataset sounds',official:'Official NASA title',
  hearing:'What you are hearing',hearingBody:'A scan line sweeps across the image. At each position we read four horizontal bands of pixels. Brightness sets the volume, colour picks the note from a musical scale, and sudden changes fire percussion.',
- verify:'Open on NASA SVS',verifyEic:'NASA EIC gallery',load:'Load a NASA frame',pnote:'The frames shown now are drawn by code in the style of each dataset. Load a real image from the NASA SVS page and the same engine turns its pixels into sound.',
- bProc:'Generated preview',bNasa:'NASA frame',module:'Module',pos:'Playhead',vol:'Volume',mute:'Mute',howl:'Play the howl',sound:'Sound is on',noSound:'Your browser blocked sound. Press Play Audio again.',prev:'Previous',next:'Next'},
+ verify:'Open on NASA SVS',verifyEic:'NASA EIC gallery',load:'Upload your image',pnote:'Modules marked NASA frame use an image from the official NASA SVS page. The others show a generated preview until a real frame is loaded. You can upload your own image from the main page or from here.',
+ bProc:'Generated preview',bNasa:'NASA frame',module:'Module',pos:'Playhead',vol:'Volume',mute:'Mute',howl:'Play the howl',sound:'Sound is on',noSound:'Your browser blocked sound. Press Play Audio again.',prev:'Previous',next:'Next',intro2:'NASA environmental and thermal imagery, turned into live sound.',intro3:'Sounds are generated in real time. Nothing is pre-recorded.',skip:'Skip intro',liveT:'Live audio generation',liveB:'Every sound is created in real time with the Web Audio API from the pixel values of the image. Nothing is pre-recorded or taken from the datasets.',upT:'Upload your own image',upB:'Any satellite image or map becomes sound.',drop:'Drop an image here to hear it',loaded:'Image loaded. Press Play Audio.',bUser:'Your image'},
 ar:{tagline:'صندوق موسيقى الأرض',sub:'مركز معلومات الأرض في ناسا · محرك تحويل البيانات إلى صوت',how1:'اختر مجموعة بيانات',how2:'اضغط تشغيل الصوت',how3:'افتح التفاصيل لمعرفة المزيد',legend:'بكسل أسطع = صوت أعلى · اللون = النغمة',
  freq:'التردد',note:'النغمة',bright:'السطوع',hue:'درجة اللون',play:'تشغيل الصوت',stop:'إيقاف الصوت',sonify:'حوّل البيانات إلى صوت',open:'فتح التفاصيل',close:'إغلاق',mapping:'كيف يبدو صوت هذه البيانات',official:'العنوان الرسمي في ناسا',
  hearing:'ماذا تسمع الآن؟',hearingBody:'خط مسح يتحرك عبر الصورة. عند كل موضع نقرأ أربعة نطاقات أفقية من البكسلات. السطوع يحدد شدة الصوت، واللون يختار النغمة من سلّم موسيقي، والتغيّرات المفاجئة تطلق إيقاعاً.',
- verify:'افتح في موقع ناسا SVS',verifyEic:'معرض مركز معلومات الأرض',load:'حمّل إطاراً من ناسا',pnote:'الإطارات المعروضة حالياً مرسومة بالكود على نمط كل مجموعة بيانات. حمّل صورة حقيقية من صفحة ناسا SVS وسيحوّل المحرك بكسلاتها إلى صوت.',
- bProc:'معاينة مولّدة',bNasa:'إطار من ناسا',module:'الوحدة',pos:'موضع التشغيل',vol:'مستوى الصوت',mute:'كتم',howl:'شغّل العواء',sound:'الصوت يعمل',noSound:'المتصفح منع الصوت. اضغط تشغيل الصوت مرة أخرى.',prev:'السابق',next:'التالي'}};
-
+ verify:'افتح في موقع ناسا SVS',verifyEic:'معرض مركز معلومات الأرض',load:'ارفع صورتك',pnote:'الوحدات المكتوب عليها "إطار من ناسا" تستخدم صورة من صفحة ناسا SVS الرسمية. أما البقية فتعرض معاينة مولّدة إلى أن يُحمَّل إطار حقيقي. يمكنك رفع صورتك من الصفحة الرئيسية أو من هنا.',
+ bProc:'معاينة مولّدة',bNasa:'إطار من ناسا',module:'الوحدة',pos:'موضع التشغيل',vol:'مستوى الصوت',mute:'كتم',howl:'شغّل العواء',sound:'الصوت يعمل',noSound:'المتصفح منع الصوت. اضغط تشغيل الصوت مرة أخرى.',prev:'السابق',next:'التالي',intro2:'مرئيات ناسا البيئية والحرارية تتحول إلى صوت حي.',intro3:'الأصوات تُولَّد لحظياً، وليست مقاطع مسجلة.',skip:'تخطي المقدمة',liveT:'توليد صوتي حي',liveB:'كل صوت يُولَّد لحظياً عبر Web Audio API من قيم بكسلات الصورة. لا توجد مقاطع جاهزة، ولا أصوات مأخوذة من مجموعات البيانات.',upT:'ارفع صورتك',upB:'أي صورة قمر صناعي أو خريطة تتحول إلى صوت.',drop:'أفلت الصورة هنا لتسمعها',loaded:'تم تحميل الصورة. اضغط تشغيل الصوت.',bUser:'صورتك'}};
 const $=id=>document.getElementById(id);
 const shelf=$('shelf'),stage=$('stage'),sheet=$('sheet');
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -319,9 +389,11 @@ const GAL='https://svs.gsfc.nasa.gov/gallery/earth-information-center/';
 const urlOf=m=>m.svs?`https://svs.gsfc.nasa.gov/${m.svs}/${m.hash||''}`:GAL;
 let lang='en';try{const sv=localStorage.getItem('th-lang');lang=sv||((navigator.language||'').toLowerCase().startsWith('ar')?'ar':'en')}catch(e){lang=(navigator.language||'').toLowerCase().startsWith('ar')?'ar':'en'}
 let active=6,playing=false,tNow=0,head=0,prevLum=0,lastPerc=0,lv=0,mx=.5,my=.5,sheetOpen=false;
+/* telemetry targets */
 const U=()=>UI[lang],MT=m=>m[lang];
 const T={};document.querySelectorAll('[data-t]').forEach(e=>(T[e.dataset.t]=T[e.dataset.t]||[]).push(e));
 const setT=(k,v)=>(T[k]||[]).forEach(e=>{if(e.textContent!==v)e.textContent=v});
+/* cards */
 const cards=MODS.map((m,i)=>{
   const el=document.createElement('div');el.className='card';el.tabIndex=-1;el.setAttribute('role','button');el.style.setProperty('--i',i);
   el.innerHTML=`<div class="tilt"><div class="cv"><canvas width="${W}" height="${H}"></canvas><div class="scan"></div><div class="glare"></div><span class="num">${String(i+1).padStart(2,'0')}</span>
@@ -340,10 +412,10 @@ function layout(){
     c.el.classList.toggle('on',o===0);c.el.tabIndex=o===0?0:-1;c.el.classList.toggle('playing',playing&&o===0)});
 }
 function info(){const m=MODS[active],t=MT(m),u=U();
-  setT('idx',`${u.module} ${String(active+1).padStart(2,'0')} / 12 · ${m.per}`);setT('name',t.name);setT('sub',t.sub);setT('desc',t.desc);setT('map',t.map);setT('official',m.official);
+  setT('idx',`${u.module} ${String(active+1).padStart(2,'0')} / 12 \u00b7 ${m.per}`);setT('name',t.name);setT('sub',t.sub);setT('desc',t.desc);setT('map',t.map);setT('official',m.official);
   $('offBox').hidden=!m.official;
-  $('count').textContent=String(active+1).padStart(2,'0')+'/12';$('sLink').href=urlOf(m);$('sLink').textContent=(m.svs?`${u.verify} #${m.svs}`:u.verifyEic)+' ↗';
-  $('badge').textContent=m.img?u.bNasa:u.bProc;
+  $('count').textContent=String(active+1).padStart(2,'0')+'/12';$('sLink').href=urlOf(m);$('sLink').textContent=(m.svs?`${u.verify} #${m.svs}`:u.verifyEic)+' \u2197';
+  $('badge').textContent=m.img?(m.user?u.bUser:u.bNasa):u.bProc;
   cards.forEach(c=>{c.el.setAttribute('aria-label',MT(c.m).name)})}
 function applyLang(l){lang=l;try{localStorage.setItem('th-lang',l)}catch(e){}
   const h=document.documentElement;h.lang=l;h.dir=l==='ar'?'rtl':'ltr';
@@ -373,10 +445,12 @@ stage.addEventListener('pointermove',e=>{mx=e.clientX/innerWidth;my=e.clientY/in
   shelf.style.setProperty('--tx',(((e.clientX-r.left)/r.width-.5)*9).toFixed(2)+'deg');shelf.style.setProperty('--ty',(-((e.clientY-r.top)/r.height-.5)*5).toFixed(2)+'deg')});
 stage.addEventListener('pointerleave',()=>{shelf.style.setProperty('--tx','0deg');shelf.style.setProperty('--ty','0deg')});
 addEventListener('keydown',e=>{const t=e.target;
+  if(e.key==='Escape'&&introOn){endIntro(false);return}
   if(e.key==='Escape'&&sheetOpen){closeSheet();return}
   if(e.key==='ArrowLeft'){select(active-1);if(!sheetOpen)cards[active].el.focus()}
   else if(e.key==='ArrowRight'){select(active+1);if(!sheetOpen)cards[active].el.focus()}
   else if(e.key===' '&&t.tagName!=='BUTTON'&&t.tagName!=='A'&&t.tagName!=='INPUT'){e.preventDefault();toggle()}});
+/* detail sheet: expands out of the active cover */
 function rectVars(){const r=cards[active].cvbox.getBoundingClientRect(),s=sheet.style;
   s.setProperty('--t',Math.max(0,r.top)+'px');s.setProperty('--l',Math.max(0,r.left)+'px');s.setProperty('--r',Math.max(0,innerWidth-r.right)+'px');s.setProperty('--b',Math.max(0,innerHeight-r.bottom)+'px')}
 function openSheet(){if(sheetOpen)return;sheetOpen=true;rectVars();sheet.hidden=false;sheet.scrollTop=0;void sheet.offsetWidth;
@@ -384,15 +458,20 @@ function openSheet(){if(sheetOpen)return;sheetOpen=true;rectVars();sheet.hidden=
 function closeSheet(){if(!sheetOpen)return;sheetOpen=false;sheet.classList.remove('in');rectVars();sheet.classList.remove('open');
   setTimeout(()=>{if(!sheetOpen)sheet.hidden=true},980);cards[active].el.focus({preventScroll:true})}
 $('sClose').onclick=closeSheet;$('dOpen').onclick=openSheet;
-function loadFrame(i,src,revoke){const img=new Image();img.onload=()=>{const m=MODS[i],cv=cards[i].cv;m.img=img;cv.width=640;cv.height=480;render(i,tNow);info();if(revoke)URL.revokeObjectURL(src)};img.src=src}
-$('file').onchange=e=>{const f=e.target.files[0];if(f)loadFrame(active,URL.createObjectURL(f),false);e.target.value=''};
+/* real NASA frames: embedded (FRAMES) or loaded by the viewer */
+function loadFrame(i,src,user){const img=new Image();img.onload=()=>{const m=MODS[i],cv=cards[i].cv;m.img=img;m.user=!!user;cv.width=640;cv.height=360;render(i,tNow);info();if(user)toast(U().loaded)};img.src=src}
+$('file').onchange=e=>{const f=e.target.files[0];if(f)loadFrame(active,URL.createObjectURL(f),true);e.target.value=''};
 addEventListener('dragover',e=>e.preventDefault());
-addEventListener('drop',e=>{e.preventDefault();const f=[...(e.dataTransfer?.files||[])].find(x=>x.type.startsWith('image/'));if(f)loadFrame(active,URL.createObjectURL(f),false)});
-MODS.forEach((m,i)=>{if(FRAMES[m.id])loadFrame(i,FRAMES[m.id])});
+let dg=0;addEventListener('dragenter',e=>{if([...(e.dataTransfer?.types||[])].includes('Files')){dg++;document.body.classList.add('drag')}});
+addEventListener('dragleave',()=>{dg=Math.max(0,dg-1);if(!dg)document.body.classList.remove('drag')});
+addEventListener('drop',e=>{e.preventDefault();dg=0;document.body.classList.remove('drag');const f=[...(e.dataTransfer?.files||[])].find(x=>x.type.startsWith('image/'));if(f)loadFrame(active,URL.createObjectURL(f),true)});
+document.querySelector('.upload').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();e.stopPropagation();$('file').click()}});
+MODS.forEach((m,i)=>loadFrame(i,FRAMES[m.id]||('frames/'+m.id+'.jpg')));
 function render(i,t){const m=MODS[i],cv=cards[i].cv;
   if(!m.img){paint(m,cv,t);return}
   const c=cv.getContext('2d',{willReadFrequently:true}),cw=cv.width,ch=cv.height,s=Math.max(cw/m.img.width,ch/m.img.height)*(1.07+.03*Math.sin(t*.25)),dw=m.img.width*s,dh=m.img.height*s;
   c.drawImage(m.img,(cw-dw)/2+Math.sin(t*.2)*(dw-cw)/2*.9,(ch-dh)/2+Math.cos(t*.17)*(dh-ch)/2*.9,dw,dh)}
+/* ---------- Sonification engine (Web Audio) ---------- */
 let ac,master,an,voices=[],noiseBuf,tdata,fdata;
 const NOTES=['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'];
 const noteName=f=>{const n=Math.round(12*Math.log2(f/440)+69);return NOTES[((n%12)+12)%12]+(Math.floor(n/12)-1)};
@@ -422,8 +501,8 @@ function toggle(){
   if(!playing){const first=!ac;initAudio();ac.resume().then(()=>{if(ac.state!=='running')toast(U().noSound)}).catch(()=>toast(U().noSound));playing=true;head=0;prevLum=0;if(first)howl()}
   else{playing=false;voices.forEach(v=>v.g.gain.setTargetAtTime(0,ac.currentTime,.08));setT('hz','0.0');setT('note','--');bandRows.forEach(r=>{r.f.textContent='--';r.n.textContent='--';r.u.style.width='0'})}
   document.body.classList.toggle('live',playing);layout();ui()}
-function ui(){const u=U(),lab=playing?u.stop:u.play,set=(b,txt)=>{b.classList.toggle('live',playing);b.textContent=(playing?'■  ':'▶  ')+txt};
-  cards.forEach(c=>{c.pp.classList.toggle('live',playing);c.pp.textContent=(playing?'■  ':'▶  ')+lab});
+function ui(){const u=U(),lab=playing?u.stop:u.play,set=(b,txt)=>{b.classList.toggle('live',playing);b.textContent=(playing?'\u25A0  ':'\u25B6  ')+txt};
+  cards.forEach(c=>{c.pp.classList.toggle('live',playing);c.pp.textContent=(playing?'\u25A0  ':'\u25B6  ')+lab});
   set($('dPlay'),lab);set($('sPlay'),playing?u.stop:u.sonify)}
 $('dPlay').onclick=toggle;$('sPlay').onclick=toggle;
 const bandRows=[0,1,2,3].map(()=>{const d=document.createElement('div');d.className='band';d.innerHTML='<i></i><span>--</span><span>--</span><div class="bar"><u></u></div>';$('bands').appendChild(d);
@@ -444,6 +523,7 @@ function sonify(dt){const m=MODS[active],s=m.snd,cv=cards[active].cv,c=cv.getCon
   const a=Math.max(pr,pg,pb),b2=Math.min(pr,pg,pb);let hue=0;if(a!==b2){const d=a-b2;hue=(a===pr?((pg-pb)/d+6)%6:a===pg?(pb-pr)/d+2:(pr-pg)/d+4)*60}
   setT('hz',domA>.002?domF.toFixed(1):'0.0');setT('note',domA>.002?noteName(domF):'--');setT('lum',Math.round(avg*100)+'%');setT('hue',Math.round(hue)+'°');setT('pos',Math.round(head*100)+'%');
   const p=(head*100)+'%';cards[active].scan.style.left=p;$('scan2').style.left=p}
+/* ---------- visuals: starfield + audio ring, spectrum, scope ---------- */
 const bg=$('bg'),bx=bg.getContext('2d'),sc=$('spec'),sx=sc.getContext('2d'),scope=$('scope'),ox=scope.getContext('2d'),dc=$('dc'),dx=dc.getContext('2d');
 let BW=0,BH=0;const stars=Array.from({length:150},()=>({x:Math.random(),y:Math.random(),z:Math.random()*.9+.1}));
 function sizeBg(){const d=Math.min(devicePixelRatio||1,1.5);BW=bg.width=Math.floor(innerWidth*d);BH=bg.height=Math.floor(innerHeight*d)}
@@ -472,8 +552,16 @@ function frame(now){const dt=Math.min(.1,(now-last)/1000);last=now;acc+=dt;tNow+
   else if(lv>.01){lv*=.9;cards[active].el.style.setProperty('--lv',lv.toFixed(3))}
   drawBg(now/1000);drawSpec();drawScope();requestAnimationFrame(frame)}
 layout();applyLang(lang);
-requestAnimationFrame(()=>setTimeout(()=>shelf.classList.add('fan'),350));
+function startApp(){document.body.classList.add('ready');setTimeout(()=>shelf.classList.add('fan'),350)}
+const intro=$('intro'),icv=$('icv'),ictx=icv.getContext('2d');icv.width=192;icv.height=108;
+let introOn=true;const i0=performance.now();
+function introFrame(now){if(!introOn)return;const t=(now-i0)/1000,k=Math.min(1,Math.max(0,(t-.5)/3.4)),e=k*k*(3-2*k),im=ictx.createImageData(192,108),d=im.data,m=MODS[0];
+  for(let y=0;y<108;y++)for(let x=0;x<192;x++){const p=m.px(x/192,y/108,t*.4,x,y),i=(y*192+x)*4;d[i]=p[0]*e;d[i+1]=p[1]*e;d[i+2]=p[2]*e;d[i+3]=255}
+  ictx.putImageData(im,0,0);requestAnimationFrame(introFrame)}
+function endIntro(snd){if(!introOn)return;introOn=false;if(snd){try{howl()}catch(e){}}intro.classList.add('out');startApp();setTimeout(()=>{intro.hidden=true},1250)}
+if(reduce){introOn=false;intro.hidden=true;startApp()}
+else{requestAnimationFrame(introFrame);setTimeout(()=>endIntro(false),6400);$('skip').onclick=()=>endIntro(true);
+  intro.addEventListener('click',e=>{if(!e.target.closest('.ibar'))endIntro(false)});$('skip').focus({preventScroll:true})}
 requestAnimationFrame(frame);
-</script>
-</body>
-</html>
+
+</script></body></html>
