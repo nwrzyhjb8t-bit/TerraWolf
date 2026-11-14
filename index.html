@@ -466,7 +466,7 @@ let dg=0;addEventListener('dragenter',e=>{if([...(e.dataTransfer?.types||[])].in
 addEventListener('dragleave',()=>{dg=Math.max(0,dg-1);if(!dg)document.body.classList.remove('drag')});
 addEventListener('drop',e=>{e.preventDefault();dg=0;document.body.classList.remove('drag');const f=[...(e.dataTransfer?.files||[])].find(x=>x.type.startsWith('image/'));if(f)loadFrame(active,URL.createObjectURL(f),true)});
 document.querySelector('.upload').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();e.stopPropagation();$('file').click()}});
-MODS.forEach((m,i)=>loadFrame(i,FRAMES[m.id]||('frames/'+m.id+'.jpg')));
+MODS.forEach((m,i)=>loadFrame(i,FRAMES[m.id]||(m.id+'.jpg')));
 function render(i,t){const m=MODS[i],cv=cards[i].cv;
   if(!m.img){paint(m,cv,t);return}
   const c=cv.getContext('2d',{willReadFrequently:true}),cw=cv.width,ch=cv.height,s=Math.max(cw/m.img.width,ch/m.img.height)*(1.07+.03*Math.sin(t*.25)),dw=m.img.width*s,dh=m.img.height*s;
